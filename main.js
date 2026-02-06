@@ -743,12 +743,14 @@ async function main() {
         viewMatrix = JSON.parse(decodeURIComponent(location.hash.slice(1)));
         carousel = false;
     } catch (err) {}
-    const url = new URL(
-        "output.splat",
-        location.href,
-        // params.get("url") || "train.splat",
-        // "https://huggingface.co/cakewalk/splat-data/resolve/main/",
-    );
+    // const url = new URL(
+    //     "output.splat",
+    //     location.href,
+    //     // params.get("url") || "train.splat",
+    //     // "https://huggingface.co/cakewalk/splat-data/resolve/main/",
+    // );
+
+    const url = new URL("output.splat", window.location.href).href;
 
     const req = await fetch(url, {
         mode: "cors", // no-cors, *cors, same-origin
@@ -757,6 +759,16 @@ async function main() {
     console.log(req);
     if (req.status != 200)
         throw new Error(req.status + " Unable to load " + req.url);
+
+
+    if (!req.ok) {
+    console.error("File not found! Check your URL path.");
+    }
+
+    const contentType = req.headers.get("Content-Type");
+    if (contentType && contentType.includes("text/html")) {
+        console.error("Received HTML instead of a Splat file. This is likely a 404 page.");
+    }
 
     const rowLength = 3 * 4 + 3 * 4 + 4 + 4;
     const reader = req.body.getReader();
