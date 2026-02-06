@@ -750,8 +750,8 @@ async function main() {
     //     // "https://huggingface.co/cakewalk/splat-data/resolve/main/",
     // );
 
-    const url = new URL("output.splat", window.location.href).href;
-
+    // const url = new URL("output.splat", window.location.href).href;
+    const url = "./output.splat";
     const req = await fetch(url, {
         mode: "cors", // no-cors, *cors, same-origin
         credentials: "omit", // include, *same-origin, omit
