@@ -570,9 +570,9 @@ function createWorker(self) {
             if (types["scale_0"]) {
                 const qlen = Math.sqrt(
                     attrs.rot_0 ** 2 +
-                        attrs.rot_1 ** 2 +
-                        attrs.rot_2 ** 2 +
-                        attrs.rot_3 ** 2,
+                    attrs.rot_1 ** 2 +
+                    attrs.rot_2 ** 2 +
+                    attrs.rot_3 ** 2,
                 );
 
                 rot[0] = (attrs.rot_0 / qlen) * 128 + 128;
@@ -746,8 +746,8 @@ async function main() {
     const url = new URL(
         // "output.splat",
         // location.href,
-        params.get("url") || "nike.splat",
-        "https://huggingface.co/cakewalk/splat-data/resolve/main/",
+        params.get("url") || "counter.splat",
+        "https://huggingface.co/datasets/mobile-gs2/mobile-gs2/resolve/main/",
     );
     const req = await fetch(url, {
         mode: "cors", // no-cors, *cors, same-origin
@@ -978,8 +978,8 @@ async function main() {
                 e.deltaMode == 1
                     ? lineHeight
                     : e.deltaMode == 2
-                      ? innerHeight
-                      : 1;
+                        ? innerHeight
+                        : 1;
             let inv = invert4(viewMatrix);
             if (e.shiftKey) {
                 inv = translate4(
@@ -1176,7 +1176,7 @@ async function main() {
     let lastFrame = 0;
     let avgFps = 0;
     let start = 0;
-
+    
     window.addEventListener("gamepadconnected", (e) => {
         const gp = navigator.getGamepads()[e.gamepad.index];
         console.log(
@@ -1246,8 +1246,8 @@ async function main() {
                     inv,
                     0,
                     -moveSpeed *
-                        (gamepad.buttons[12].pressed -
-                            gamepad.buttons[13].pressed),
+                    (gamepad.buttons[12].pressed -
+                        gamepad.buttons[13].pressed),
                     0,
                 );
                 carousel = false;
@@ -1257,8 +1257,8 @@ async function main() {
                 inv = translate4(
                     inv,
                     -moveSpeed *
-                        (gamepad.buttons[14].pressed -
-                            gamepad.buttons[15].pressed),
+                    (gamepad.buttons[14].pressed -
+                        gamepad.buttons[15].pressed),
                     0,
                     0,
                 );
@@ -1289,8 +1289,8 @@ async function main() {
             if (gamepad.buttons[5].pressed && !rightGamepadTrigger) {
                 camera =
                     cameras[
-                        (cameras.indexOf(camera) + cameras.length - 1) %
-                            cameras.length
+                    (cameras.indexOf(camera) + cameras.length - 1) %
+                    cameras.length
                     ];
                 inv = invert4(getViewMatrix(camera));
                 carousel = false;
@@ -1316,8 +1316,8 @@ async function main() {
                 activeKeys.includes("KeyJ")
                     ? -0.05
                     : activeKeys.includes("KeyL")
-                      ? 0.05
-                      : 0,
+                        ? 0.05
+                        : 0,
                 0,
                 1,
                 0,
@@ -1327,8 +1327,8 @@ async function main() {
                 activeKeys.includes("KeyI")
                     ? 0.05
                     : activeKeys.includes("KeyK")
-                      ? -0.05
-                      : 0,
+                        ? -0.05
+                        : 0,
                 1,
                 0,
                 0,
@@ -1364,7 +1364,7 @@ async function main() {
 
         const currentFps = 1000 / (now - lastFrame) || 0;
         avgFps = avgFps * 0.9 + currentFps * 0.1;
-
+        
         if (vertexCount > 0) {
             document.getElementById("spinner").style.display = "none";
             gl.uniformMatrix4fv(u_view, false, actualViewMatrix);
