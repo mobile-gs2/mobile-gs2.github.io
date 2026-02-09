@@ -743,12 +743,14 @@ async function main() {
         viewMatrix = JSON.parse(decodeURIComponent(location.hash.slice(1)));
         carousel = false;
     } catch (err) {}
-    const url = new URL(
-        // "output.splat",
-        // location.href,
-        params.get("url") || "counter.splat",
-        "https://huggingface.co/datasets/mobile-gs2/mobile-gs2/resolve/main/",
-    );
+    // const url = new URL(
+    //     // "output.splat",
+    //     // location.href,
+    //     params.get("url") || "counter.zip",
+    //     "https://github.com/user-attachments/files/25177283",
+    // );
+    const url = "https://cdn.jsdelivr.net/gh/mobile-gs2/mobile-gs2.github.io/counter.splat";
+
     const req = await fetch(url, {
         mode: "cors", // no-cors, *cors, same-origin
         credentials: "omit", // include, *same-origin, omit
